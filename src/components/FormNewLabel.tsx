@@ -17,7 +17,7 @@ const FormNewLabel = ({ labels, setLabels, isValid, setIsValid }: Props) => {
     )
     const label: LabelType = {
       title: data.title,
-      name: data.name,
+      name: data.title,
       placeholder: data.title
     }
 
@@ -26,7 +26,6 @@ const FormNewLabel = ({ labels, setLabels, isValid, setIsValid }: Props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
-
     setIsValid(value.length > 0)
   }
 

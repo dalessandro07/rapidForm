@@ -44,10 +44,13 @@ export default function Form() {
           : ''
     }))
 
+    const email = 'drios28@outlook.es'
+    const subject = 'Mis%20datos'
+
     const body = arrFromData.map(({ name, content }) => `${name}%3A%0D%0A${content}%0A%0A`).join('')
 
     const template = `
-      mailto:drios28@outlook.es?subject=Mis%20datos&body=Estos%20son%20mis%20datos%3A%0D%0A%0D%0A${body}%0D%0A-------------------------%0D%0A%0D%0APara%20el%20desarrollador%3A%0D%0A%0D%0AJSON%3A%0D%0A%0D%0A${JSON.stringify(
+      mailto:${email}?subject=${subject}&body=Estos%20son%20mis%20datos%3A%0D%0A%0D%0A${body}%0D%0A-------------------------%0D%0A%0D%0APara%20desarrolladores%3A%0D%0A%0D%0AJSON%3A%0D%0A%0D%0A${JSON.stringify(
       data
     )}`
 
@@ -59,7 +62,7 @@ export default function Form() {
   return (
     <article className="flex flex-col items-center gap-8">
       <form className="flex flex-col-reverse items-center gap-8" onSubmit={handleSubmitData}>
-        <section className="grid grid-cols-2 gap-8">
+        <section className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {labels.map((label, index) => (
             <Label
               key={index}
