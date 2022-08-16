@@ -1,0 +1,16 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Form from '@components/Form'
+---
+
+<Layout title="Formulario de Datos">
+	<main class="min-h-screen flex flex-col items-center p-20 gap-20">
+		<header>
+			<h1 class="text-2xl font-bold">Completa los datos</h1>
+		</header>
+
+		<section>
+			<Form client:visible />
+		</section>
+	</main>
+</Layout>
