@@ -18,7 +18,7 @@ const initialValue: LabelType[] = [
   }
 ]
 
-export default function Form() {
+export default function Form () {
   const [labels, setLabels] = useState<LabelType[]>(initialValue)
   const [isValid, setIsValid] = useState<boolean>(false)
 
@@ -26,7 +26,9 @@ export default function Form() {
     e.preventDefault()
 
     const data = JSON.parse(
-      JSON.stringify(Object.fromEntries(new FormData(e.currentTarget).entries()))
+      JSON.stringify(
+        Object.fromEntries(new FormData(e.currentTarget).entries())
+      )
     )
 
     const isEmpty = Object.values(data).some(value => value === '')
@@ -47,22 +49,33 @@ export default function Form() {
     const email = 'drios28@outlook.es'
     const subject = 'Mis%20datos'
 
-    const body = arrFromData.map(({ name, content }) => `${name}%3A%0D%0A${content}%0A%0A`).join('')
+    const body = arrFromData
+      .map(({ name, content }) => `${name}%3A%0D%0A${content}%0A%0A`)
+      .join('')
 
     const template = `
       mailto:${email}?subject=${subject}&body=Estos%20son%20mis%20datos%3A%0D%0A%0D%0A${body}%0D%0A-------------------------%0D%0A%0D%0APara%20desarrolladores%3A%0D%0A%0D%0AJSON%3A%0D%0A%0D%0A${JSON.stringify(
       data
     )}`
 
+    const whatsApp = `https://api.whatsapp.com/send?phone=+51986307201&text=${JSON.stringify(
+      data
+    )}`
+
     window.open(template, '_blank')
+    window.open(whatsApp, '_blank')
   }
 
-  const deleteLabel = (name: string) => setLabels(labels.filter(label => label.name !== name))
+  const deleteLabel = (name: string) =>
+    setLabels(labels.filter(label => label.name !== name))
 
   return (
-    <article className="flex flex-col items-center gap-8">
-      <form className="flex flex-col-reverse items-center gap-8" onSubmit={handleSubmitData}>
-        <section className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+    <article className='flex flex-col items-center gap-8'>
+      <form
+        className='flex flex-col-reverse items-center gap-8'
+        onSubmit={handleSubmitData}
+      >
+        <section className='grid grid-cols-1 gap-8 sm:grid-cols-2'>
           {labels.map((label, index) => (
             <Label
               key={index}
@@ -73,7 +86,7 @@ export default function Form() {
           ))}
         </section>
 
-        <Button type="submit" icon="send" color="green">
+        <Button type='submit' icon='send' color='green'>
           Enviar datos
         </Button>
       </form>
